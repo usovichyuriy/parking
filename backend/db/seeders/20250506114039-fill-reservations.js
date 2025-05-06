@@ -12,25 +12,19 @@ module.exports = {
     yesterdayDate.setDate(todayDate.getDate() - 1);
 
     for (let i = 1; i <= 10; i++) {
-      const date = faker.date.between({
-        from: yesterdayDate,
-        to: todayDate,
-      });
+      const date = faker.date
+        .between({
+          from: yesterdayDate,
+          to: todayDate,
+        })
+        .toISOString()
+        .split('T')[0];
 
       const hours = String(faker.number.int({ min: 0, max: 23 })).padStart(
         2,
         '0',
       );
-      const minutes = String(faker.number.int({ min: 0, max: 59 })).padStart(
-        2,
-        '0',
-      );
-      const seconds = String(faker.number.int({ min: 0, max: 59 })).padStart(
-        2,
-        '0',
-      );
-
-      const time = `${hours}:${minutes}: ${seconds}`;
+      const time = `${hours}:00`;
 
       reservations.push({
         id: i,

@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false,
       },
       reserved_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
       },
       reserved_time: {

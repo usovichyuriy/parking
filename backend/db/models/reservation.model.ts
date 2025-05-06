@@ -5,6 +5,7 @@ import {
   PrimaryKey,
   Table,
   ForeignKey,
+  DataType,
 } from 'sequelize-typescript';
 import { User } from './user.model';
 import { ParkingSpot } from './parking-spot.model';
@@ -27,8 +28,11 @@ export class Reservation extends Model {
   @ForeignKey(() => ParkingSpot)
   parking_spot_number: string;
 
-  @Column
-  reserved_date: Date;
+  @Column({
+    type: DataType.DATEONLY,
+    allowNull: false,
+  })
+  reserved_date: string;
 
   @Column
   reserved_time: string;
