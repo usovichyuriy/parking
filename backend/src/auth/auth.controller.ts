@@ -24,7 +24,6 @@ class AuthController {
     response
       .status(HttpStatus.CREATED)
       .cookie('access_token', registerResponse.token, cookieConfig)
-      .cookie('user_id', registerResponse.user.id, cookieConfig)
       .send(registerResponse);
   }
 
@@ -39,7 +38,6 @@ class AuthController {
     response
       .status(HttpStatus.OK)
       .cookie('access_token', loginResponse.token, cookieConfig)
-      .cookie('user_id', loginResponse.user.id, cookieConfig)
       .send(loginResponse);
   }
 }

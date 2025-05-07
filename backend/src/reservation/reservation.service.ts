@@ -25,8 +25,10 @@ class ReservationService {
   ) {}
 
   private checkDateAndTime(date: string, time: string): boolean {
-    const reservationDate = new Date(`${date}T${time}:00`);
-    return reservationDate >= new Date();
+    const reservationDate = new Date(`${date}T${time}:00`).toISOString();
+    const currentDate = new Date().toISOString();
+
+    return reservationDate >= currentDate;
   }
 
   async createReservation(
@@ -108,6 +110,18 @@ class ReservationService {
       throw new ForbiddenException({
         status: HttpStatus.FORBIDDEN,
         error: RESERVATION_RESPONSE_MESSAGES.NO_ACCESS,
+      });
+    }
+
+    const isDateValid = this.checkDateAndTime(
+      reservation.dataValues.reserved_date,
+      reservation.dataValues.reserved_time,
+    );
+
+    if (!isDateValid) {
+      throw new BadRequestException({
+        status: HttpStatus.BAD_REQUEST,
+        error: RESERVATION_RESPONSE_MESSAGES.IS_STARTED,
       });
     }
 

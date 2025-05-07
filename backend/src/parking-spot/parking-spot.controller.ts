@@ -6,10 +6,13 @@ import {
   ParseIntPipe,
   Query,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import ParkingSpotService from './parking-spot.service';
 import { Response } from 'express';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('parking-spots')
 class ParkingSpotController {
   constructor(private readonly parkingSpotService: ParkingSpotService) {}

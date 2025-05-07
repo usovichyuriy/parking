@@ -9,11 +9,14 @@ import {
   Post,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import ReservationService from './reservation.service';
 import { ReserveSpotDto } from './reserve-spot.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('reservations')
 class ReservationController {
   constructor(private readonly reservationService: ReservationService) {}
@@ -26,7 +29,7 @@ class ReservationController {
   ): Promise<void> {
     const reservation = await this.reservationService.createReservation(
       reserveSpotDto,
-      request.cookies.user_id,
+      request.user.id,
     );
     response.status(HttpStatus.OK).send(reservation);
   }
@@ -39,7 +42,7 @@ class ReservationController {
   ): Promise<void> {
     const userReservations = await this.reservationService.findUserReservations(
       user_id,
-      request.cookies.user_id,
+      request.user.id,
     );
     response.status(HttpStatus.OK).send(userReservations);
   }
@@ -52,7 +55,7 @@ class ReservationController {
   ): Promise<void> {
     await this.reservationService.declineReservation(
       reservation_id,
-      request.cookies.user_id,
+      request.user.id,
     );
     response.status(HttpStatus.NO_CONTENT).send();
   }
