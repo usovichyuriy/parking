@@ -2,6 +2,7 @@ import {
   ConflictException,
   HttpStatus,
   Inject,
+  Injectable,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -13,6 +14,7 @@ import { AUTH_RESPONSE_MESSAGES } from './auth-response.messages';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 
+@Injectable()
 class AuthService {
   constructor(
     @Inject(PROVIDERS_CONSTANTS.USERS_REPOSITORY)

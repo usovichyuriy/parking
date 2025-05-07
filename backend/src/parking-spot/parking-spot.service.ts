@@ -1,8 +1,9 @@
-import { HttpStatus, Inject, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ParkingSpot } from 'db/models/parking-spot.model';
 import { Reservation } from 'db/models/reservation.model';
 import { PROVIDERS_CONSTANTS } from 'src/database/providers.constants';
 
+@Injectable()
 class ParkingSpotService {
   constructor(
     @Inject(PROVIDERS_CONSTANTS.PARKING_SPOTS_REPOSITORY)
