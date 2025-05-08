@@ -1,0 +1,39 @@
+.bookingCalendar {
+  display: flex;
+  justify-content: center;
+  margin: 5%;
+}
+
+.availableTimeTable {
+  display: flex;
+  justify-content: center;
+  margin: 10% auto;
+  width: 40%;
+  color: #fff;
+}
+
+.availableTimeTable button {
+  border-radius: 20px;
+  text-transform: none;
+  background-color: #33c965;
+}
+
+@media (max-width: 600px) {
+  .bookingCalendar {
+    margin: 10%;
+    height: 20vh;
+  }
+  .availableTimeTable {
+    width: 80%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .bookingCalendar {
+    margin: 10%;
+    height: 10vh;
+  }
+  .availableTimeTable {
+    width: 80%;
+  }
+}

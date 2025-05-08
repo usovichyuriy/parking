@@ -1,0 +1,53 @@
+.listHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2%;
+  color: #0b0c10;
+}
+
+.listHeader button {
+  text-transform: none;
+  border-radius: 10px;
+  background-color: #0b0c10;
+  margin: 0 auto;
+}
+
+.parkingSpotTable {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 3% auto;
+  max-width: 500px;
+}
+
+.tableHead {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #333;
+}
+
+.tableHead th {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.tableBody button {
+  border-radius: 20px;
+  text-transform: none;
+  background-color: #33c965;
+}
+
+@media (max-width: 600px) {
+  .parkingSpotTable {
+    width: 90%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .parkingSpotTable {
+    max-width: none;
+    width: 90%;
+  }
+}
