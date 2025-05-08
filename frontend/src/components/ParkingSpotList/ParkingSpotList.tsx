@@ -21,12 +21,11 @@ const ParkingSlotList: React.FC = () => {
   );
 
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleGetReservations = () => {
     navigate(`/reservations`);
   };
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (userId) {
@@ -58,8 +57,9 @@ const ParkingSlotList: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody className={classes.tableBody}>
-            {parkingSpots.map((parkingSpot) => (
+            {parkingSpots.map((parkingSpot, index) => (
               <ParkingSpot
+                key={index}
                 id={parkingSpot.id}
                 location={parkingSpot.location}
               />

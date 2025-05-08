@@ -39,26 +39,18 @@ const ReservationHistory: React.FC = () => {
       );
 
       if (previous && previous.status !== reservation.status) {
-        toast.success("Reservation was cancelled!", {
+        const successMessage = "Reservation was cancelled!";
+        toast.success(successMessage, {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: true,
         });
       }
     });
-
     previousReservationsRef.current = reservations;
 
     if (error) {
-      toast.error(error, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-
+      toast.error(error);
       dispatch(clearReservationError());
     }
 
@@ -86,8 +78,9 @@ const ReservationHistory: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody className={classes.tableBody}>
-            {reservations.map((reservation) => (
+            {reservations.map((reservation, index) => (
               <Reservation
+                key={index}
                 id={reservation.id}
                 spotId={reservation.parking_spot_number}
                 reservedDate={reservation.reserved_date}

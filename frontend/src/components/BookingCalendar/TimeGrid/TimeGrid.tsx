@@ -24,8 +24,9 @@ const TimeGrid: React.FC<ITimeGridProps> = (props) => {
 
   return (
     <Grid container spacing={1} justifyContent="center">
-      {props.availableTime.map((time) => (
+      {props.availableTime.map((time, index) => (
         <Button
+          key={index}
           variant="contained"
           onClick={() => {
             handleOnClick(time);

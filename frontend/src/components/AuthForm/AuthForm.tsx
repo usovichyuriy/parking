@@ -29,7 +29,6 @@ const AuthForm: React.FC = () => {
     if (isAuth) {
       navigate("/");
     }
-
     if (error) {
       toast.error(error, {
         position: "top-center",
@@ -39,7 +38,6 @@ const AuthForm: React.FC = () => {
         pauseOnHover: true,
         draggable: true,
       });
-
       dispatch(clearAuthError());
     }
   }, [isAuth, navigate, error, dispatch]);

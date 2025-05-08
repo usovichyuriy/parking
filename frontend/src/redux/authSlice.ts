@@ -37,7 +37,6 @@ export const authUser = createAsyncThunk(
       if (axiosError.response?.data.message) {
         return axiosError.response.data.message.join(", ");
       }
-
       return axiosError.response?.data?.error;
     }
   }

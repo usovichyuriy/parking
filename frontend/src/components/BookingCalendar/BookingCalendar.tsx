@@ -17,8 +17,6 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 
 const BookingCalendar: React.FC = () => {
-  const id = useParams<{ id: string }>().id;
-
   const parking_spot_id = useSelector(
     (state: RootState) => state.reservation.parking_spot_id
   );
@@ -28,18 +26,18 @@ const BookingCalendar: React.FC = () => {
   const toastShow = useSelector(
     (state: RootState) => state.reservation.toastShow
   );
-
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
-
-  const dispatch = useDispatch<AppDispatch>();
-
   const availableTime = useSelector(
     (state: RootState) => state.reservation.availableTime
   );
 
+  const id = useParams<{ id: string }>().id;
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     if (reservationHistory.length > 0 && !toastShow) {
-      toast.success("Reservation was made!", {
+      const reservationSuccessMessage = "Reservation was made!";
+      toast.success(reservationSuccessMessage, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: true,
@@ -63,7 +61,7 @@ const BookingCalendar: React.FC = () => {
 
   return (
     <div className={classes.bookingCalendarWrapper}>
-      <h2>Reservation of parking slot № {parking_spot_id}</h2>
+      <h2>Reservation of parking slot {parking_spot_id}</h2>
       <ToastContainer />
       <div className={classes.bookingCalendar}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
