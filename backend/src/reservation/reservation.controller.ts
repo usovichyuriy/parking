@@ -15,12 +15,25 @@ import { Request, Response } from 'express';
 import ReservationService from './reservation.service';
 import { ReserveSpotDto } from './reserve-spot.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import {
+  ApiBadRequestResponse,
+  ApiConflictResponse,
+  ApiForbiddenResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
+import { Reservation } from 'db/models/reservation.model';
 
 @UseGuards(AuthGuard)
 @Controller('reservations')
 class ReservationController {
   constructor(private readonly reservationService: ReservationService) {}
 
+  @ApiNotFoundResponse()
+  @ApiConflictResponse()
+  @ApiBadRequestResponse()
+  @ApiOkResponse({ type: Reservation })
   @Post()
   async reserveSpot(
     @Body() reserveSpotDto: ReserveSpotDto,
@@ -34,6 +47,8 @@ class ReservationController {
     response.status(HttpStatus.OK).send(reservation);
   }
 
+  @ApiForbiddenResponse()
+  @ApiOkResponse({ type: [Reservation] })
   @Get(':user_id')
   async getUserReservations(
     @Param('user_id', ParseIntPipe) user_id: number,
@@ -47,6 +62,11 @@ class ReservationController {
     response.status(HttpStatus.OK).send(userReservations);
   }
 
+  @ApiNotFoundResponse()
+  @ApiForbiddenResponse()
+  @ApiBadRequestResponse()
+  @ApiConflictResponse()
+  @ApiNoContentResponse()
   @Delete(':reservation_id')
   async cancelReservation(
     @Param('reservation_id', ParseIntPipe) reservation_id: number,

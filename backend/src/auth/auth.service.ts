@@ -13,6 +13,7 @@ import { JwtService } from '@nestjs/jwt';
 import { AUTH_RESPONSE_MESSAGES } from './auth-response.messages';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { IAuthResponse } from './IAuthResponse';
 
 @Injectable()
 class AuthService {
@@ -37,7 +38,7 @@ class AuthService {
     return this.jwtService.sign({ id, email });
   }
 
-  async registerUser(body: RegisterDto) {
+  async registerUser(body: RegisterDto): Promise<IAuthResponse> {
     const isUserExists = !!(await this.usersRepository.findOne({
       where: { email: body.email },
     }));
@@ -60,7 +61,7 @@ class AuthService {
     return { token, user };
   }
 
-  async loginUser(body: LoginDto) {
+  async loginUser(body: LoginDto): Promise<IAuthResponse> {
     const user = await this.usersRepository.findOne({
       where: { email: body.email },
     });

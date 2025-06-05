@@ -5,6 +5,14 @@ import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import {
+  ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { IAuthResponse } from './IAuthResponse';
 
 @Controller('auth')
 class AuthController {
@@ -13,6 +21,10 @@ class AuthController {
     private readonly configService: ConfigService,
   ) {}
 
+  @ApiConflictResponse()
+  @ApiNotFoundResponse()
+  @ApiUnauthorizedResponse()
+  @ApiCreatedResponse({ type: IAuthResponse })
   @Post('register')
   async register(
     @Body() registerDto: RegisterDto,
@@ -27,6 +39,7 @@ class AuthController {
       .send(registerResponse);
   }
 
+  @ApiCreatedResponse({ type: IAuthResponse })
   @Post('login')
   async login(
     @Body() loginDto: LoginDto,
