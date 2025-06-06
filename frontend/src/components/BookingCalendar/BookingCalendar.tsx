@@ -61,7 +61,7 @@ const BookingCalendar: React.FC = () => {
 
   return (
     <div className={classes.bookingCalendarWrapper}>
-      <h2>Reservation of parking slot {parking_spot_id}</h2>
+      <h2>Reservation of parking spot {parking_spot_id}</h2>
       <ToastContainer />
       <div className={classes.bookingCalendar}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>

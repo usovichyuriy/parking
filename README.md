@@ -59,6 +59,20 @@ npm start
 
 ## 🧑‍💻 Usage
 
+### UI
+
+🧩 Fully responsive design — looks great on desktop, tablet, and mobile devices.
+
+📸 **Screenshots (Desktop)**
+
+![Auth](./assets/authPage.jpg)
+
+![ParkingSpots](./assets/parkingSpotsPage.jpg)
+
+![Reservation](./assets/reservationPage.jpg)
+
+![ReservationHistory](./assets/reservationHistoryPage.jpg)
+
 ### API
 
 📚 **Swagger Documentation:**
